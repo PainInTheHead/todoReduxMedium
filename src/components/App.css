@@ -1,0 +1,99 @@
+.container {
+  width: 80vh;
+  height: 100%;
+  margin: 10vh auto;
+  border: 2px solid #FF9540;
+  padding: 30px;
+  border-radius: 30px;
+  background-color: #ffebc5;
+}
+
+.wrapper {
+}
+
+.title {
+  text-align: center;
+  color: #FF7100;
+  margin-bottom: 3vh;
+}
+
+.todo {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: #FFB173;
+  position: relative;
+  list-style-type: none;
+  width: 100%;
+  box-shadow: 1px 5px 6px 0 #FF9540;
+  padding: 10px;
+  border-radius: 10px;
+  font-size: 20px;
+  cursor: pointer;
+  margin: 5px auto;
+  background-color: white;
+}
+
+.todos {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  padding: 10px;
+  margin-top: 10px;
+}
+
+.done {
+  text-decoration: line-through;
+  box-shadow: 1px 5px 1px 0 #c2ffbc;
+}
+
+.delete {
+  width: 2vh;
+  height: 2vh;
+}
+
+
+.total > span+span{
+   margin-left: 10px;
+}
+
+.btn {
+  display: flex;
+  justify-content: center;
+  padding: 10px;
+  width: 50%;
+  border: none;
+  border-radius: 15px;
+  text-decoration: none;
+  color: white;
+  background: #FFB173;
+  box-shadow: 0 5px 0 #FF9540;
+  margin: 0 5px;
+}
+
+.btn:hover {
+  background: #FF9540;
+  box-shadow: none;
+  position: relative;
+  top: 5px;
+}
+
+.btn-wrapper {
+  display: flex;
+  justify-content: center;
+  margin: 10px
+  
+}
+
+.total {
+  display: flex;
+  justify-content: space-between;
+  margin: 10px auto;
+  width: 50vh;
+  border: 2px solid #FF9540;
+  padding: 10px;
+  border-radius: 10px;
+  box-shadow: 5px 5px 20px #FF9540;
+  background-color: white;
+  font-size: 3vh;
+}
