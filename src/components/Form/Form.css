@@ -39,3 +39,10 @@ input{
 .hide {
     display: none;
 }
+
+.title {
+    text-align: center;
+    color: #FF7100;
+    margin-bottom: 3vh;
+  }
+  

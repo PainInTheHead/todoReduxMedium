@@ -1,6 +1,9 @@
 import { useEffect, useState } from "react";
 import "./App.css";
 import Form from "./Form/Form";
+import Total from "./Total/Total";
+import Todos from "./Todos/Todos";
+import Buttons from "./Buttons/Buttons";
 
 function App() {
   const [todos, setTodos] = useState([]);
@@ -8,7 +11,6 @@ function App() {
   const [completeTodos, setCompleteTodos] = useState(0);
   const [pageActive, setPageActive] = useState(false);
   const [pageComleted, setPageCompleted] = useState(false);
-  const [select, setSelect] = useState(false)
 
   useEffect(() => {
     setCompleteTodos(todos.filter((todo) => todo.done === true).length);
@@ -17,20 +19,23 @@ function App() {
 
   const allSelected = () => {
     if (completeTodos === todos.length) {
-      setTodos(todos.map(todo => {
-        return {...todo, done : false}
-      })) 
+      setTodos(
+        todos.map((todo) => {
+          return { ...todo, done: false };
+        })
+      );
     } else {
-      setTodos(todos.map(todo => {
-        if (todo.done === false) {
-          return {...todo, done : true}
-        } else {
-          return {...todo}
-        }
-      }))
+      setTodos(
+        todos.map((todo) => {
+          if (todo.done === false) {
+            return { ...todo, done: true };
+          } else {
+            return { ...todo };
+          }
+        })
+      );
     }
-    
-  }
+  };
 
   const openAll = () => {
     setPageActive(false);
@@ -38,16 +43,13 @@ function App() {
   };
 
   const openActive = () => {
-    if (completeTodos === 0) {
-      return;
-    } else {
+    
       setPageCompleted(false);
       setPageActive(true);
-    }
+    
   };
 
   const openComplited = () => {
-    
     setPageActive(false);
     setPageCompleted(true);
   };
@@ -64,6 +66,8 @@ function App() {
   const clearHolder = () => {
     setAllTodos(0);
     setTodos([]);
+    setPageActive(false);
+    setPageCompleted(false)
   };
 
   const clearComleted = () => {
@@ -96,59 +100,28 @@ function App() {
     ? todos.filter((todo) => todo.done === true)
     : todos;
   return (
-    <div className="wrapper">
       <div className="container">
-        <h1 className="title">Todos</h1>
-        <Form putTodo={putTodo} allSelected={allSelected} zeroTodo={todos.length}/>
-        <div className="total">
-          <span>{allTodos} item left</span>
-          <span>Complete Todos: {completeTodos}</span>
-        </div>
-
-        <ul className="todos">
-          {filteredTodos.map((todo) => {
-            return (
-              <li
-                onClick={() => toggleTodo(todo.id)}
-                className={todo.done ? "todo done" : "todo"}
-                key={todo.id}
-              >
-                {todo.text}
-                <img
-                  src="./deletebut.png"
-                  alt="delete"
-                  className="delete"
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    deleteTodo(todo.id);
-                  }}
-                ></img>
-              </li>
-            );
-          })}
-        </ul>
-        
+        <Form
+          putTodo={putTodo}
+          allSelected={allSelected}
+          zeroTodo={todos.length}
+        />
+        <Total allTodos={allTodos} completeTodos = {completeTodos}/>
+        <Todos 
+        filteredTodos = {filteredTodos}
+        toggleTodo = {toggleTodo}
+        deleteTodo = {deleteTodo}
+        />
         {todos.length !== 0 && (
-          <div className="btn-wrapper">
-          <button onClick={clearHolder} className="btn">
-            Clear All
-          </button>
-          <button onClick={openAll} className="btn">
-            All
-          </button>
-          <button onClick={openActive} className="btn">
-            Active
-          </button>
-          <button onClick={openComplited} className="btn">
-            Complited
-          </button>
-          <button onClick={clearComleted} className="btn">
-            Clear complited
-          </button>
-        </div>
+        <Buttons 
+        clearHolder={clearHolder}
+        openAll={openAll}
+        openComplited={openComplited}
+        clearComleted={clearComleted}
+        openActive={openActive}
+        />
         )}
       </div>
-    </div>
   );
 }
 

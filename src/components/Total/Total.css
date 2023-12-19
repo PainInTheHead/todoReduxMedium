@@ -1,0 +1,16 @@
+.total > span+span{
+    margin-left: 10px;
+ }
+
+ .total {
+    display: flex;
+    justify-content: space-between;
+    margin: 10px auto;
+    width: 50vh;
+    border: 2px solid #FF9540;
+    padding: 10px;
+    border-radius: 10px;
+    box-shadow: 5px 5px 20px #FF9540;
+    background-color: white;
+    font-size: 3vh;
+  }
