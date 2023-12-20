@@ -1,15 +1,19 @@
 import './Buttons.css'
-
-
+import { useDispatch } from 'react-redux';
+import { clearHolder } from '../../store/todoSlice';
 
 const Buttons = (props) => {
+
+
+  const dispatch = useDispatch()
     return (  <div className="btn-wrapper">
-    <button onClick={props.clearHolder} className="btn">
+    <button onClick={() => dispatch(clearHolder())} className="btn">
       Clear All
     </button>
     <button onClick={props.openAll} className="btn">
       All
     </button>
+    
     <button onClick={props.openActive} className="btn">
       Active
     </button>

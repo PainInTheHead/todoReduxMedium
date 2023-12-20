@@ -1,8 +1,16 @@
-import { useState } from "react";
 import "./Form.css";
+import { useState } from "react";
+import { putTodo, allSelected } from '../../store/todoSlice'
+import { useDispatch } from "react-redux";
 
 const Form = (props) => {
   const [value, setValue] = useState("");
+  const dispatch = useDispatch()
+  const addTsk = () => {
+    dispatch(putTodo({value}))
+    setValue("");
+  }
+
   return (
     <>
     <h1 className="title">Todos</h1>
@@ -10,15 +18,14 @@ const Form = (props) => {
         className="form"
         onSubmit={(e) => {
           e.preventDefault();
-          props.putTodo(value);
-          setValue("");
+          addTsk(value)
         }}
       >
         <div className="input">
           <button
             type="button"
             onClick={() => {
-              props.allSelected();
+              dispatch(allSelected());
             }}
             className={props.zeroTodo === 0 ? "hide" : "inputbtn"}
           >
